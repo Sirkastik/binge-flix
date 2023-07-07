@@ -35,21 +35,29 @@ function scrapeSeriesInfo() {
 
 function scrapeEpisodes() {
   return select(document)
-    .all(".row2.footer")
-    .map((e, index) => {
-      return {
-        number: index + 1,
-        title: e.find(".cell2").content(),
-        size: e.find(".cell3").content(),
-        url: e.find(".cell4 a").href(),
-      };
-    });
+    .all(".uk-accordion-title")
+    .map((sn) => {
+      return sn
+        .next()
+        .all(".row2.footer")
+        .map((e, index) => {
+          return {
+            number: index + 1,
+            title: e.find(".cell2").content(),
+            size: e.find(".cell3").content(),
+            url: e.find(".cell4 a").href(),
+            season: sn.text().replace("Download Season ", ""),
+          };
+        });
+    })
+    .flat();
 }
 
 function select(element = {}) {
   return {
     all: (selector) => [...element.querySelectorAll(selector)].map(select),
     find: (selector) => select(element.querySelector(selector)),
+    next: () => select(element.nextElementSibling),
     text: () => element.innerText,
     content: () => element.textContent,
     src: () => element.src,

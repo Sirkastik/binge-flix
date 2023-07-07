@@ -12,6 +12,7 @@ export type Episode = {
   title: string;
   size: string;
   url: string;
+  season: string;
 };
 
 type SeriesAndEpisodes = {
