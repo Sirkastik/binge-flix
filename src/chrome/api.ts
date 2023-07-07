@@ -23,7 +23,7 @@ const SERIES_LIST_STORAGE_KEY = "TODAY_TV_SERIES_LIST";
 
 const getEpisodeKey = (title: string) => `TTS_${title}_EPISODES`;
 
-export const deleteSeries = async (title: string) => {
+export const deleteSeries = (title: string) => {
   chrome.storage.local.get([SERIES_LIST_STORAGE_KEY], (result) => {
     const seriesList = jsonParse<Series[]>(result[SERIES_LIST_STORAGE_KEY], []);
     const filteredList = seriesList.filter((s) => s.title !== title);

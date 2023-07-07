@@ -10,7 +10,7 @@
   left: 0;
   top: 0;
   height: 100%;
-  width: 100%;
+  width: 60vh;
   z-index: -10;
   pointer-events: none;
 }

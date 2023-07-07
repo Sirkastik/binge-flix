@@ -23,6 +23,7 @@ onMounted(() => getSeriesList().then((list) => (seriesList.value = list)));
     </div>
     <a
       href="http://www.todaytvseries6.com/"
+      target="_blank"
       class="text-[1.5rem] hover:text-[#2e5ce5]"
       ><home-link
     /></a>
@@ -35,7 +36,7 @@ onMounted(() => getSeriesList().then((list) => (seriesList.value = list)));
       :key="series.title"
     >
       <span
-        class="text-[16px] opacity-0 hover:opacity-80 transition absolute z-10 top-0 right-0 p-2 bg-[#2e5ce5] rounded-[2px] cursor-pointer"
+        class="text-[1rem] p-2 transition absolute z-10 top-0 right-0 bg-[#e7e8eb] bg-opacity-50 hover:bg-white hover:text-[red] hover:bg-opacity-90 text-[#121737] rounded-[2px] cursor-pointer"
         @click="onDeleteSeries(series.title)"
       >
         <delete-icon />
