@@ -1,52 +1,31 @@
 {
-  "name": "Binge Flix",
-  "version": "0.1.0",
+  "name": "binge-flix",
   "private": true,
+  "version": "1.0.0",
+  "type": "module",
   "scripts": {
-    "serve": "vue-cli-service build --mode development --watch",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "dev": "vite",
+    "copy:public": "cp -R public dist/public",
+    "copy:manifest": "cp manifest.json dist/manifest.json",
+    "copy:scripts": "cp -R scripts dist/scripts",
+    "generate": "npm run copy:public && npm run copy:manifest && npm run copy:scripts",
+    "build": "vue-tsc && vite build && npm run generate",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "core-js": "^3.6.5",
-    "vue": "^3.0.0",
-    "vue-router": "^4.0.12",
-    "vuex": "^4.0.2"
+    "vue": "^3.2.47",
+    "vue-router": "^4.1.6"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-router": "~4.5.0",
-    "@vue/cli-plugin-vuex": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0",
-    "@vue/eslint-config-prettier": "^6.0.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-prettier": "^3.3.1",
-    "eslint-plugin-vue": "^7.0.0",
-    "prettier": "^2.2.1",
-    "vue-cli-plugin-browser-extension": "~0.25.2"
-  },
-  "eslintConfig": {
-    "lintOnSave": false,
-    "root": false,
-    "env": {
-      "node": true,
-      "webextensions": true
-    },
-    "extends": [
-      "plugin:vue/vue3-essential",
-      "eslint:recommended",
-      "@vue/prettier"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {}
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+    "@types/chrome": "^0.0.240",
+    "@vitejs/plugin-vue": "^4.1.0",
+    "autoprefixer": "^10.4.14",
+    "i": "^0.3.7",
+    "npm": "^9.6.3",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.3.1",
+    "typescript": "^4.9.3",
+    "vite": "^4.2.0",
+    "vue-tsc": "^1.2.0"
+  }
 }
