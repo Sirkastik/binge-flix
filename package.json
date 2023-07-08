@@ -1,31 +1,26 @@
 {
   "name": "binge-flix",
   "private": true,
-  "version": "1.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "copy:public": "cp -R public dist/public",
-    "copy:manifest": "cp manifest.json dist/manifest.json",
-    "copy:scripts": "cp -R scripts dist/scripts",
-    "generate": "npm run copy:public && npm run copy:manifest && npm run copy:scripts",
-    "build": "vue-tsc && vite build && npm run generate",
+    "build": "vue-tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.2.47",
+    "vue": "^3.3.4",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.240",
-    "@vitejs/plugin-vue": "^4.1.0",
+    "@crxjs/vite-plugin": "^2.0.0-beta.18",
+    "@vitejs/plugin-vue": "^4.2.3",
     "autoprefixer": "^10.4.14",
-    "i": "^0.3.7",
-    "npm": "^9.6.3",
-    "postcss": "^8.4.21",
-    "tailwindcss": "^3.3.1",
-    "typescript": "^4.9.3",
-    "vite": "^4.2.0",
-    "vue-tsc": "^1.2.0"
+    "postcss": "^8.4.25",
+    "tailwindcss": "^3.3.2",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.0",
+    "vue-tsc": "^1.8.3"
   }
 }
