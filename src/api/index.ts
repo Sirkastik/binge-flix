@@ -1,6 +1,6 @@
 import { SERIES_LIST_STORAGE_KEY } from "./constants";
 import { Episode, Series } from "./types";
-import { getEpisodeKey, jsonParse, stringed } from "./utils";
+import { getEpisodeKey, jsonParse, stringified } from "./utils";
 
 
 export const upsertSeries = (series: Series, episodes: Episode[]) => {
@@ -10,20 +10,23 @@ export const upsertSeries = (series: Series, episodes: Episode[]) => {
         );
 
         chrome.storage.local.set({
-            [SERIES_LIST_STORAGE_KEY]: stringed([series, ...filteredList]),
-            [getEpisodeKey(series.title)]: stringed(episodes),
+            [SERIES_LIST_STORAGE_KEY]: stringified([series, ...filteredList]),
+            [getEpisodeKey(series.title)]: stringified(episodes),
         });
     })
 }
 
-export const deleteSeries = (title: string) => {
-    chrome.storage.local.get([SERIES_LIST_STORAGE_KEY], (result) => {
-        const seriesList = jsonParse<Series[]>(result[SERIES_LIST_STORAGE_KEY], []);
-        const filteredList = seriesList.filter((s) => s.title !== title);
-        chrome.storage.local.set({
-            [SERIES_LIST_STORAGE_KEY]: stringed(filteredList),
+export const deleteSeries = (title: string): Promise<Series[]> => {
+    return new Promise((resolve) => {
+        chrome.storage.local.get([SERIES_LIST_STORAGE_KEY], (result) => {
+            const seriesList = jsonParse<Series[]>(result[SERIES_LIST_STORAGE_KEY], []);
+            const filteredList = seriesList.filter((s) => s.title !== title);
+            chrome.storage.local.set({
+                [SERIES_LIST_STORAGE_KEY]: stringified(filteredList),
+            });
+            resolve(filteredList)
         });
-    });
+    })
 };
 
 export const getSeriesList = async (): Promise<Series[]> => {

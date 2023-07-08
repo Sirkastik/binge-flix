@@ -8,12 +8,11 @@ import DeleteIcon from "../components/icons/delete.vue";
 
 const seriesList = ref<Series[]>([]);
 
-const onDeleteSeries = (title: string) => {
-  seriesList.value = seriesList.value.filter((s) => s.title !== title);
-  deleteSeries(title);
-};
+const setSeriesList = (series: Series[]) => seriesList.value = series
 
-onMounted(() => getSeriesList().then((list) => (seriesList.value = list)));
+const onDeleteSeries = (title: string) => deleteSeries(title).then(setSeriesList)
+
+onMounted(() => getSeriesList().then(setSeriesList));
 </script>
 
 <template>
@@ -54,4 +53,4 @@ onMounted(() => getSeriesList().then((list) => (seriesList.value = list)));
       </div>
     </div>
   </ul>
-</template>../api
+</template>

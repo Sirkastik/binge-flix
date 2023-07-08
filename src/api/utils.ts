@@ -9,4 +9,4 @@ export const jsonParse = <T>(str: string, fallback: T) => {
 
 export const getEpisodeKey = (title: string) => `TTS_${title}_EPISODES`;
 
-export const stringed = <T>(value: T) => JSON.stringify(value);
+export const stringified = <T>(value: T) => JSON.stringify(value);
