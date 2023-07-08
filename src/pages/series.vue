@@ -38,9 +38,7 @@ const copyLinkToClipboard = (url: string) => {
   document.execCommand("copy");
   document.body.removeChild(el);
   copiedLink.value = url;
-  setTimeout(() => {
-    copiedLink.value = "";
-  }, 2000);
+  setTimeout(() => (copiedLink.value = ""), 2000);
 };
 
 const changeSeason = (next?: boolean) => {
@@ -53,9 +51,8 @@ onMounted(() => {
   getSeriesAndEpisodes(useRoute().params.title as string).then((result) => {
     seriesList.value = result.series;
     episodes.value = result.episodes;
-    const [latestEp] = result.episodes;
-    if (!latestEp) return;
-    currentSeason.value = Number(latestEp.season);
+    if (!result.episodes.length) return;
+    currentSeason.value = Number(result.episodes[0].season);
   });
 });
 </script>
@@ -108,17 +105,28 @@ onMounted(() => {
       <div class="flex gap-3 justify-center items-center">
         <span
           class="cursor-pointer relative"
+          :class="{
+            'text-[#2e5ce5]': copiedLink && copiedLink === episode.url,
+          }"
           @click="copyLinkToClipboard(episode.url)"
         >
           <span
-            class="absolute -left-10 -right-10 bottom-5 bg-slate-900 bg-opacity-30 rounded px-2 py-1 text-xs text-center"
-            v-if="copiedLink === episode.url"
+            class="pointer-events-none absolute z-10 -left-3 -right-10 bottom-0 translate-y-0 bg-[#2e5ce5] opacity-0 rounded-[3px] px-1 py-[3px] font-medium text-white text-[0.55rem] text-center transition-all"
+            :class="{
+              'opacity-100 -translate-y-[14px]':
+                copiedLink && copiedLink === episode.url,
+            }"
           >
             Link Copied
           </span>
           <icon-link />
         </span>
-        <a :href="episode.url" download>
+        <a
+          @click.stop=""
+          :href="episode.url"
+          download
+          class="transition-all hover:scale-150 hover:text-[#2e5ce5]"
+        >
           <icon-download />
         </a>
       </div>
