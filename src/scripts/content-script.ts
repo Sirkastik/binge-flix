@@ -1,10 +1,10 @@
 import { upsertSeries } from "../api";
-import { Series, Episode } from "../api/types"
+import { Series, Episode } from "../api/types";
 
 window.addEventListener("DOMContentLoaded", async () => {
   const series: Series = scrapeSeriesInfo();
   const episodes: Episode[] = scrapeEpisodes();
-  upsertSeries(series, episodes)
+  upsertSeries(series, episodes);
 });
 
 function scrapeSeriesInfo() {
@@ -42,16 +42,17 @@ function scrapeEpisodes() {
 
 function select(element: Element) {
   return {
-    all: (selector: string) => [...element.querySelectorAll(selector)].map(select),
+    all: (selector: string) =>
+      [...element.querySelectorAll(selector)].map(select),
     find: (selector: string) => select(element.querySelector(selector)!),
     next: () => select(element.nextElementSibling!),
     text: () => (element as HTMLElement).innerText,
-    content: () => element.textContent || '',
+    content: () => element.textContent || "",
     src: () => (element as HTMLImageElement).src,
     href: () => (element as HTMLAnchorElement).href,
   };
 }
 
 function body() {
-  return document.body
+  return document.body;
 }

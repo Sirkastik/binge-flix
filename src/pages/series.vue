@@ -3,10 +3,11 @@ import { onMounted, ref, computed } from "vue";
 import { useRoute } from "vue-router";
 import { getSeriesAndEpisodes } from "../api";
 import { Episode, Series } from "../api/types";
-import CopyLink from "../components/icons/link.vue";
-import DownLoad from "../components/icons/download.vue";
-import HomeLink from "../components/icons/home.vue";
-import NextIcon from "../components/icons/next.vue";
+
+import IconLink from "../components/icons/link.vue";
+import IconDownload from "../components/icons/download.vue";
+import IconHome from "../components/icons/home.vue";
+import IconNext from "../components/icons/next.vue";
 
 const seriesList = ref<Series[]>([]);
 const episodes = ref<Episode[]>([]);
@@ -63,24 +64,32 @@ onMounted(() => {
   <a :href="series?.url" target="_blank">
     <img :src="series?.image" alt="" class="cursor-pointer rounded-[4px]" />
   </a>
-  <div class="text-[#121737] flex items-center justify-between mt-5 border-b pb-3">
+  <div
+    class="text-[#121737] flex items-center justify-between mt-5 border-b pb-3"
+  >
     <h2 class="leading-[130%] font-bold flex items-center gap-1">
       <router-link class="hover:text-[#2e5ce5] text-lg" to="/">
-        <HomeLink />
+        <icon-home />
       </router-link>
-      <span class="text-[14px]">{{
-        series?.title.split("Tv Series")[0].trim()
-      }}</span>
+      <span class="text-[14px]">
+        {{ series?.title.split("Tv Series")[0].trim() }}
+      </span>
     </h2>
     <div class="flex items-center justify-between">
-      <span @click="changeSeason(false)"
-        class="cursor-pointer border text-[1rem] border-[#e7e8eb] bg-[#fff] py-[2px] px-[6px] rounded-[2px] text-gray-500 hover:bg-white hover:text-gray-900">
-        <next-icon class="-scale-100" />
+      <span
+        @click="changeSeason(false)"
+        class="cursor-pointer border text-[1rem] border-[#e7e8eb] bg-[#fff] py-[2px] px-[6px] rounded-[2px] text-gray-500 hover:bg-white hover:text-gray-900"
+      >
+        <icon-next class="-scale-100" />
       </span>
-      <span class="font-bold px-2">Season {{ currentSeason.toString().padStart(2, "0") }}</span>
-      <span @click="changeSeason(true)"
-        class="cursor-pointer border text-[1rem] border-[#e7e8eb] bg-[#fff] py-[2px] px-[6px] rounded-[2px] text-gray-500 hover:bg-white hover:text-gray-900">
-        <next-icon />
+      <span class="font-bold px-2"
+        >Season {{ currentSeason.toString().padStart(2, "0") }}</span
+      >
+      <span
+        @click="changeSeason(true)"
+        class="cursor-pointer border text-[1rem] border-[#e7e8eb] bg-[#fff] py-[2px] px-[6px] rounded-[2px] text-gray-500 hover:bg-white hover:text-gray-900"
+      >
+        <icon-next />
       </span>
     </div>
   </div>
@@ -89,22 +98,28 @@ onMounted(() => {
       class="flex justify-between items-center bg-white rounded-[4px] border border-transparent hover:border-[#2e5ce5] transition duration-[.4s] shadow-[0_6px_24px_rgba(160,162,175,.1)] hover:shadow-[0_6px_24px_rgba(46,92,229,.1)] px-4 py-2 cursor-pointer"
       v-for="episode in episodes.filter(
         (e) => Number(e.season) === currentSeason
-      )" @click="copyLinkToClipboard(episode.url)">
+      )"
+      @click="copyLinkToClipboard(episode.url)"
+    >
       <div class="font-semibold px-2 leading-[130%]">
         {{ episode.title }}
       </div>
       <div class="py-2 text-gray-500">{{ episode.size }}</div>
       <div class="flex gap-3 justify-center items-center">
-        <span class="cursor-pointer relative" @click="copyLinkToClipboard(episode.url)">
+        <span
+          class="cursor-pointer relative"
+          @click="copyLinkToClipboard(episode.url)"
+        >
           <span
             class="absolute -left-10 -right-10 bottom-5 bg-slate-900 bg-opacity-30 rounded px-2 py-1 text-xs text-center"
-            v-if="copiedLink === episode.url">
+            v-if="copiedLink === episode.url"
+          >
             Link Copied
           </span>
-          <CopyLink />
+          <icon-link />
         </span>
         <a :href="episode.url" download>
-          <DownLoad />
+          <icon-download />
         </a>
       </div>
     </li>
