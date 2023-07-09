@@ -13,7 +13,9 @@ const copied = computed(() => {
 </script>
 
 <template>
-  <li>
+  <li
+    class="flex justify-between items-center bg-white rounded-[4px] border border-transparent hover:border-[#2e5ce5] transition duration-[.4s] shadow-[0_6px_24px_rgba(160,162,175,.1)] hover:shadow-[0_6px_24px_rgba(46,92,229,.1)] px-4 py-2 cursor-pointer"
+  >
     <div class="font-semibold px-2 leading-[130%]">
       {{ episode.title }}
     </div>

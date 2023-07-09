@@ -5,8 +5,14 @@ const episodes = ref<Episode[]>([]);
 const copiedLink = ref("");
 const currentSeason = ref(1);
 
+const title = computed(() => useRoute().params.title as string);
+
 const series = computed(() => {
-  return library.list.value.find((s) => s.title === useRoute().params.title);
+  return library.list.value.find((s) => s.title === title.value);
+});
+
+const seasonEpisodes = computed(() => {
+  return episodes.value.filter((e) => Number(e.season) === currentSeason.value);
 });
 
 const latestSeason = computed(() => {
@@ -27,7 +33,7 @@ const copyLinkToClipboard = (url: string) => {
 
 onMounted(() => {
   library.getList();
-  library.getEpisodes(useRoute().params.title as string).then((result) => {
+  library.getEpisodes(title.value).then((result) => {
     episodes.value = result;
     if (!result.length) return;
     currentSeason.value = Number(result[0].season);
@@ -41,13 +47,10 @@ watch(copiedLink, copyLinkToClipboard);
   <series-header :series="series" :max="latestSeason" v-model="currentSeason" />
   <ul class="flex flex-col gap-4 mt-4">
     <series-episode-item
-      @click="copyLinkToClipboard(episode.url)"
-      class="flex justify-between items-center bg-white rounded-[4px] border border-transparent hover:border-[#2e5ce5] transition duration-[.4s] shadow-[0_6px_24px_rgba(160,162,175,.1)] hover:shadow-[0_6px_24px_rgba(46,92,229,.1)] px-4 py-2 cursor-pointer"
-      v-for="episode in episodes.filter(
-        (e) => Number(e.season) === currentSeason
-      )"
+      v-for="episode in seasonEpisodes"
       :episode="episode"
       v-model="copiedLink"
+      @click="copyLinkToClipboard(episode.url)"
     />
   </ul>
 </template>

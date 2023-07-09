@@ -8,7 +8,9 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <li>
+  <li
+    class="bg-white p-4 flex flex-col gap-4 rounded-[4px] border border-transparent hover:border-[#2e5ce5] transition duration-[.4s] shadow-[0_6px_24px_rgba(160,162,175,.1)] hover:shadow-[0_6px_24px_rgba(46,92,229,.1)] relative"
+  >
     <span
       class="text-[1rem] p-2 transition absolute z-10 top-0 right-0 bg-[#e7e8eb] bg-opacity-50 hover:bg-white hover:text-[red] hover:bg-opacity-90 text-[#121737] rounded-[2px] cursor-pointer"
       @click="emit('delete', series.title)"
