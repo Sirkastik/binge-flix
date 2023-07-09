@@ -1,10 +1,7 @@
-import { upsertSeries } from "../api";
-import { Series, Episode } from "../api/types";
-
 window.addEventListener("DOMContentLoaded", async () => {
   const series: Series = scrapeSeriesInfo();
   const episodes: Episode[] = scrapeEpisodes();
-  upsertSeries(series, episodes);
+  useLibrary().upsertSeries(series, episodes);
 });
 
 function scrapeSeriesInfo() {
@@ -50,7 +47,7 @@ function select(element: Element) {
     content: () => element.textContent || "",
     src: () => (element as HTMLImageElement).src,
     href: () => (element as HTMLAnchorElement).href,
-  };
+  }
 }
 
 function body() {

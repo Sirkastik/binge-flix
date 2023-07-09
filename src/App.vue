@@ -1,8 +1,4 @@
-<script setup lang="ts">
-import GridBg from "./components/grid-bg.vue";
-</script>
-
 <template>
-  <grid-bg />
+  <background-image />
   <router-view />
 </template>

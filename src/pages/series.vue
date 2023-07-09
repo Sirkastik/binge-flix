@@ -1,21 +1,12 @@
 <script setup lang="ts">
-import { onMounted, ref, computed } from "vue";
-import { useRoute } from "vue-router";
-import { getSeriesAndEpisodes } from "../api";
-import { Episode, Series } from "../api/types";
+const library = useLibrary();
 
-import IconLink from "../components/icons/link.vue";
-import IconDownload from "../components/icons/download.vue";
-import IconHome from "../components/icons/home.vue";
-import IconNext from "../components/icons/next.vue";
-
-const seriesList = ref<Series[]>([]);
 const episodes = ref<Episode[]>([]);
 const copiedLink = ref("");
 const currentSeason = ref(1);
 
 const series = computed(() => {
-  return seriesList.value.find((s) => s.title === useRoute().params.title);
+  return library.list.value.find((s) => s.title === useRoute().params.title);
 });
 
 const latestSeason = computed(() => {
@@ -31,6 +22,7 @@ const isFirst = computed(() => {
 });
 
 const copyLinkToClipboard = (url: string) => {
+  if (!url) return;
   const el = document.createElement("textarea");
   el.value = url;
   document.body.appendChild(el);
@@ -48,13 +40,15 @@ const changeSeason = (next?: boolean) => {
 };
 
 onMounted(() => {
-  getSeriesAndEpisodes(useRoute().params.title as string).then((result) => {
-    seriesList.value = result.series;
-    episodes.value = result.episodes;
-    if (!result.episodes.length) return;
-    currentSeason.value = Number(result.episodes[0].season);
+  library.getList();
+  library.getEpisodes(useRoute().params.title as string).then((result) => {
+    episodes.value = result;
+    if (!result.length) return;
+    currentSeason.value = Number(result[0].season);
   });
 });
+
+watch(copiedLink, copyLinkToClipboard);
 </script>
 
 <template>
@@ -91,45 +85,14 @@ onMounted(() => {
     </div>
   </div>
   <ul class="flex flex-col gap-4 mt-4">
-    <li
+    <episode-item
+      @click="copyLinkToClipboard(episode.url)"
       class="flex justify-between items-center bg-white rounded-[4px] border border-transparent hover:border-[#2e5ce5] transition duration-[.4s] shadow-[0_6px_24px_rgba(160,162,175,.1)] hover:shadow-[0_6px_24px_rgba(46,92,229,.1)] px-4 py-2 cursor-pointer"
       v-for="episode in episodes.filter(
         (e) => Number(e.season) === currentSeason
       )"
-      @click="copyLinkToClipboard(episode.url)"
-    >
-      <div class="font-semibold px-2 leading-[130%]">
-        {{ episode.title }}
-      </div>
-      <div class="py-2 text-gray-500">{{ episode.size }}</div>
-      <div class="flex gap-3 justify-center items-center">
-        <span
-          class="cursor-pointer relative"
-          :class="{
-            'text-[#2e5ce5]': copiedLink && copiedLink === episode.url,
-          }"
-          @click="copyLinkToClipboard(episode.url)"
-        >
-          <span
-            class="pointer-events-none absolute z-10 -left-3 -right-10 bottom-0 translate-y-0 bg-[#2e5ce5] opacity-0 rounded-[3px] px-1 py-[3px] font-medium text-white text-[0.55rem] text-center transition-all"
-            :class="{
-              'opacity-100 -translate-y-[14px]':
-                copiedLink && copiedLink === episode.url,
-            }"
-          >
-            Link Copied
-          </span>
-          <icon-link />
-        </span>
-        <a
-          @click.stop=""
-          :href="episode.url"
-          download
-          class="transition-all hover:scale-150 hover:text-[#2e5ce5]"
-        >
-          <icon-download />
-        </a>
-      </div>
-    </li>
+      :episode="episode"
+      v-model="copiedLink"
+    />
   </ul>
 </template>
