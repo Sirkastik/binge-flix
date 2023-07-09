@@ -1,18 +1,62 @@
-# Vue 3 + TypeScript + Vite
+# Binge Flix Chrome Extension
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Binge Flix is a handy tool that allows users to download TV series from [Today TV Series](http://todaytvseries2.com) directly within their Chrome browser. With this extension, you can easily access and download your favorite TV series episodes without the need for any additional software.
 
-## Recommended IDE Setup
+## Installation
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+To install the Binge Flix, please follow these steps:
 
-## Type Support For `.vue` Imports in TS
+1. Navigate to the [Latest Release](https://github.com/Sirkastik/binge-flix/releases/latest) page of the GitHub repository.
+2. Locate the latest release version and find the downloadable zipped file (named `chrome_extension.zip`).
+3. Click on the file to start the download.
+4. Extract the contents of the downloaded zip file to a folder on your computer.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+## Loading the Extension to Chrome
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+Once you have downloaded and extracted the extension files, you can load it into your Chrome browser using the following steps:
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+1. Open the Chrome browser on your computer.
+2. Type `chrome://extensions` into the address bar and press Enter. This will open the Extensions page.
+3. Enable the "Developer mode" toggle switch located at the top-right corner of the page.
+4. Click on the "Load unpacked" button located at the top-left corner of the page. This will open a file dialog.
+5. Navigate to the folder where you extracted the extension files and select the folder inside named dist.
+6. Click the "Select Folder" button to load the extension into Chrome.
+7. Binge Flix should now be installed and ready to use.
+
+## How to Use
+
+To use the Binge Flix, follow these steps:
+
+1. Visit [Today TV Series](http://todaytvseries2.com) in your Chrome browser.
+2. Search for the TV series you want to download.
+3. Click on the TV series title to open the series page.
+4. Now click on the extension to open it.
+5. You should see the TV series you just visited in that list.
+6. Click on the series in the list to see the episodes for all seasons.
+7. Click on the download button at the right side of any episode to start downloading.
+8. Click on any episode to copy the download link if you're using an external downloader.
+
+That's it!
+
+## Contributing
+
+Contributions to Binge Flix are welcome. If you encounter any issues or have suggestions for improvement, please open an issue on the [GitHub repository](https://github.com/Sirkastik/binge-flix/issues).
+
+If you would like to contribute code to the project, follow these steps:
+
+1. Fork the repository on GitHub.
+2. Create a new branch with a descriptive name for your changes.
+3. Make your desired changes to the codebase.
+4. Test your changes to ensure they work as expected.
+5. Commit your changes and push them to your forked repository.
+6. Open a pull request on the main repository to propose your changes.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE). Feel free to use and modify the code as per the terms of the license.
+
+## Disclaimer
+
+Binge Flix is an unofficial tool and is not affiliated with [Today TV Series](http://todaytvseries2.com) or its operators. The extension is provided as-is, without any warranty or guarantee. Use it at your own risk.
+
+If you encounter any issues or have questions, please reach out by opening an issue on the [GitHub repository](https://github.com/Sirkastik/binge-flix/issues).
