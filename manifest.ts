@@ -1,10 +1,16 @@
 import { defineManifest } from "@crxjs/vite-plugin";
+import packageJson from "./package.json";
+
+// Convert from Semver (example: 0.1.0-beta6)
+const [major, minor, patch, label = "0"] = packageJson.version
+  .replace(/[^\d.-]+/g, "")
+  .split(/[.-]/);
 
 export default defineManifest(async () => ({
   manifest_version: 3,
-  name: "Binge Flix",
-  version: `0.0.1.0`,
-  version_name: "0.0.1",
+  name: packageJson.name,
+  version: `${major}.${minor}.${patch}.${label}`,
+  version_name: packageJson.version,
   icons: {
     128: "public/icon.png",
   },
