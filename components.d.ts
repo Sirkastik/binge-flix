@@ -7,8 +7,9 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    BackgroundImage: typeof import('./src/components/background-image.vue')['default']
-    EpisodeItem: typeof import('./src/components/episode-item.vue')['default']
+    AppBackground: typeof import('./src/components/app/background.vue')['default']
+    HomeHeader: typeof import('./src/components/home/header.vue')['default']
+    HomeSeriesItem: typeof import('./src/components/home/series-item.vue')['default']
     IconDelete: typeof import('./src/components/icon/delete.vue')['default']
     IconDownload: typeof import('./src/components/icon/download.vue')['default']
     IconEpisodes: typeof import('./src/components/icon/episodes.vue')['default']
@@ -18,7 +19,7 @@ declare module 'vue' {
     IconNext: typeof import('./src/components/icon/next.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    SeriesHeader: typeof import('./src/components/series-header.vue')['default']
-    SeriesItem: typeof import('./src/components/series-item.vue')['default']
+    SeriesEpisodeItem: typeof import('./src/components/series/episode-item.vue')['default']
+    SeriesHeader: typeof import('./src/components/series/header.vue')['default']
   }
 }

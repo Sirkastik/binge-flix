@@ -20,11 +20,14 @@ const changeSeason = (next?: boolean) => {
   if (next && isLast.value) return emit("update:modelValue", 1);
   if (!next && isFirst.value) return emit("update:modelValue", props.max);
   const value = next ? props.modelValue + 1 : props.modelValue - 1;
-  emit('update:modelValue', value)
+  emit("update:modelValue", value);
 };
 </script>
 
 <template>
+  <a :href="series?.url" target="_blank">
+    <img :src="series?.image" alt="" class="cursor-pointer rounded-[4px]" />
+  </a>
   <div
     class="text-[#121737] flex items-center justify-between mt-5 border-b pb-3"
   >

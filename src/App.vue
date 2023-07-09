@@ -1,4 +1,4 @@
 <template>
-  <background-image />
+  <app-background />
   <router-view />
 </template>
