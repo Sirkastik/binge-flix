@@ -8,7 +8,7 @@ const [major, minor, patch, label = "0"] = packageJson.version
 
 export default defineManifest(async () => ({
   manifest_version: 3,
-  name: packageJson.name,
+  name: 'Binge Flix',
   version: `${major}.${minor}.${patch}.${label}`,
   version_name: packageJson.version,
   icons: {

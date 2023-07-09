@@ -7,7 +7,7 @@ Binge Flix is a handy tool that allows users to download TV series from [Today T
 To install the Binge Flix, please follow these steps:
 
 1. Navigate to the [Latest Release](https://github.com/Sirkastik/binge-flix/releases/latest) page of the GitHub repository.
-2. Locate the latest release version and find the downloadable zipped file (named `chrome_extension.zip`).
+2. Locate the downloadable zipped file (named `chrome_extension.zip`).
 3. Click on the file to start the download.
 4. Extract the contents of the downloaded zip file to a folder on your computer.
 
@@ -17,9 +17,9 @@ Once you have downloaded and extracted the extension files, you can load it into
 
 1. Open the Chrome browser on your computer.
 2. Type `chrome://extensions` into the address bar and press Enter. This will open the Extensions page.
-3. Enable the "Developer mode" toggle switch located at the top-right corner of the page.
-4. Click on the "Load unpacked" button located at the top-left corner of the page. This will open a file dialog.
-5. Navigate to the folder where you extracted the extension files and select the folder inside named dist.
+3. Enable the `Developer mode` toggle switch located at the top-right corner of the page.
+4. Click on the `Load unpacked` button located at the top-left corner of the page. This will open a file dialog.
+5. Navigate to the folder where you extracted the extension files and select the folder inside (named `dist`).
 6. Click the "Select Folder" button to load the extension into Chrome.
 7. Binge Flix should now be installed and ready to use.
 
@@ -28,8 +28,8 @@ Once you have downloaded and extracted the extension files, you can load it into
 To use the Binge Flix, follow these steps:
 
 1. Visit [Today TV Series](http://todaytvseries2.com) in your Chrome browser.
-2. Search for the TV series you want to download.
-3. Click on the TV series title to open the series page.
+2. Browse around for the TV series you want to download.
+3. Click on the TV series card to open the series page.
 4. Now click on the extension to open it.
 5. You should see the TV series you just visited in that list.
 6. Click on the series in the list to see the episodes for all seasons.
