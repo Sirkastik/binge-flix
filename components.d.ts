@@ -18,6 +18,7 @@ declare module 'vue' {
     IconNext: typeof import('./src/components/icon/next.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SeriesHeader: typeof import('./src/components/series-header.vue')['default']
     SeriesItem: typeof import('./src/components/series-item.vue')['default']
   }
 }

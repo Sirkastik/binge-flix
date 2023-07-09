@@ -13,14 +13,6 @@ const latestSeason = computed(() => {
   return episodes.value.length ? Number(episodes.value[0].season) : 1;
 });
 
-const isLast = computed(() => {
-  return currentSeason.value >= latestSeason.value;
-});
-
-const isFirst = computed(() => {
-  return currentSeason.value <= 1;
-});
-
 const copyLinkToClipboard = (url: string) => {
   if (!url) return;
   const el = document.createElement("textarea");
@@ -31,12 +23,6 @@ const copyLinkToClipboard = (url: string) => {
   document.body.removeChild(el);
   copiedLink.value = url;
   setTimeout(() => (copiedLink.value = ""), 2000);
-};
-
-const changeSeason = (next?: boolean) => {
-  if (next && isLast.value) return (currentSeason.value = 1);
-  if (!next && isFirst.value) return (currentSeason.value = latestSeason.value);
-  next ? currentSeason.value++ : currentSeason.value--;
 };
 
 onMounted(() => {
@@ -55,35 +41,7 @@ watch(copiedLink, copyLinkToClipboard);
   <a :href="series?.url" target="_blank">
     <img :src="series?.image" alt="" class="cursor-pointer rounded-[4px]" />
   </a>
-  <div
-    class="text-[#121737] flex items-center justify-between mt-5 border-b pb-3"
-  >
-    <h2 class="leading-[130%] font-bold flex items-center gap-1">
-      <router-link class="hover:text-[#2e5ce5] text-lg" to="/">
-        <icon-home />
-      </router-link>
-      <span class="text-[14px]">
-        {{ series?.title.split("Tv Series")[0].trim() }}
-      </span>
-    </h2>
-    <div class="flex items-center justify-between">
-      <span
-        @click="changeSeason(false)"
-        class="cursor-pointer border text-[1rem] border-[#e7e8eb] bg-[#fff] py-[2px] px-[6px] rounded-[2px] text-gray-500 hover:bg-white hover:text-gray-900"
-      >
-        <icon-next class="-scale-100" />
-      </span>
-      <span class="font-bold px-2"
-        >Season {{ currentSeason.toString().padStart(2, "0") }}</span
-      >
-      <span
-        @click="changeSeason(true)"
-        class="cursor-pointer border text-[1rem] border-[#e7e8eb] bg-[#fff] py-[2px] px-[6px] rounded-[2px] text-gray-500 hover:bg-white hover:text-gray-900"
-      >
-        <icon-next />
-      </span>
-    </div>
-  </div>
+  <series-header :series="series" :max="latestSeason" v-model="currentSeason" />
   <ul class="flex flex-col gap-4 mt-4">
     <episode-item
       @click="copyLinkToClipboard(episode.url)"
