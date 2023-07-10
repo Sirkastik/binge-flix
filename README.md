@@ -1,6 +1,14 @@
-# Binge Flix Chrome Extension
+<br />
 
-Binge Flix is a handy tool that allows users to download TV series from [Today TV Series](http://todaytvseries2.com) directly within their Chrome browser. With this extension, you can easily access and download your favorite TV series episodes without the need for any additional software.
+<p align="center">
+  <img src="./src/assets/logo.png">
+</p>
+
+<br />
+
+# Binge Flix
+
+Binge Flix is a handy chrome extension that allows users to download TV series from [Today TV Series](http://todaytvseries2.com) directly within their Chrome browser. With this extension, you can easily access and download your favorite TV series episodes without the need for any additional software.
 
 ## Installation
 
