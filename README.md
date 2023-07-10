@@ -12,7 +12,7 @@ Binge Flix is a handy chrome extension that allows users to download TV series f
 
 ## Installation
 
-To install the Binge Flix, please follow these steps:
+To install Binge Flix, please follow these steps:
 
 1. Navigate to the [Latest Release](https://github.com/Sirkastik/binge-flix/releases/latest) page of the GitHub repository.
 2. Locate the downloadable zipped file (named `chrome_extension.zip`).
@@ -44,11 +44,11 @@ To use the Binge Flix, follow these steps:
 7. Click on the download button at the right side of any episode to start downloading.
 8. Click on any episode to copy the download link if you're using an external downloader.
 
-That's it!
+That's it!✅
 
 ## Contributing
 
-Contributions to Binge Flix are welcome. If you encounter any issues or have suggestions for improvement, please open an issue on the [GitHub repository](https://github.com/Sirkastik/binge-flix/issues).
+Contributions to Binge Flix are welcomed. If you encounter any issues or have suggestions for improvement, please open an issue on the [GitHub repository](https://github.com/Sirkastik/binge-flix/issues).
 
 If you would like to contribute code to the project, follow these steps:
 
